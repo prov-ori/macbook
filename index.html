@@ -18,6 +18,8 @@
       <a href="#reasons">Причины</a>
       <a href="#setup">Моя техника</a>
       <a href="#risks">Минусы</a>
+      <a href="#deals">Как купить</a>
+      <a href="#calc">Калькулятор</a>
     </nav>
     <button id="theme" aria-label="Сменить тему" title="Сменить тему">◐</button>
   </div>
@@ -74,6 +76,9 @@
 <section id="reasons" class="wrap">
   <h2>Мои причины: проверка на прочность</h2>
   <div class="reasons" id="reasonList"></div>
+  <h3 class="alt">Ещё причины</h3>
+  <p class="sub">Дополнительные аргументы с честной оценкой: что реально работает, а что красивые слова.</p>
+  <div class="grid2" id="moreReasons"></div>
 </section>
 
 <section id="setup" class="wrap">
@@ -103,6 +108,44 @@
   <div class="grid2" id="riskList"></div>
   <h3 class="alt">Альтернативы для iOS-разработки</h3>
   <div class="grid2" id="altList"></div>
+</section>
+
+<section id="deals" class="wrap">
+  <h2>Варианты сделки: как купить дешевле и умнее</h2>
+  <p class="sub">Размеры скидок — типичные ориентиры и зависят от страны и сезона. Проверяй у конкретного продавца.</p>
+  <div class="grid2" id="dealList"></div>
+  <h3 class="alt">Порядок действий</h3>
+  <ol class="steps" id="steps"></ol>
+</section>
+
+<section id="calc" class="wrap">
+  <h2>Калькулятор полной стоимости</h2>
+  <p class="sub">Базовые цены — ориентир в USD. Подставь реальные суммы из своего магазина и конфигуратора.</p>
+  <div class="calc">
+    <form id="calcForm" class="calcform" onsubmit="return false">
+      <label>Модель <select id="cModel"></select></label>
+      <label>Способ покупки
+        <select id="cDeal">
+          <option value="0">Новый, без скидки (0%)</option>
+          <option value="8">Education Store (≈8%)</option>
+          <option value="15">Apple Refurbished (≈15%)</option>
+          <option value="10">Распродажа / ресейлер (≈10%)</option>
+          <option value="35">Б/у (≈35%, только проверенный)</option>
+        </select>
+      </label>
+      <label>Своя скидка, % (переопределяет) <input id="cCustom" type="number" min="0" max="80" step="1" placeholder="—"></label>
+      <label>Доплата за ОЗУ/SSD, $ <input id="cUp" type="number" min="0" step="10" value="200"></label>
+      <label>AppleCare, $ <input id="cCare" type="number" min="0" step="10" value="0"></label>
+      <label>Док-станция и аксессуары, $ <input id="cAcc" type="number" min="0" step="10" value="150"></label>
+      <label>Apple Developer Program (99 $/год)
+        <select id="cDev"><option value="0">Не нужна пока</option><option value="1">1 год</option><option value="3">3 года</option></select>
+      </label>
+      <label>Срок использования, лет <input id="cYears" type="number" min="1" max="10" step="1" value="4"></label>
+      <label>Остаточная стоимость при продаже, % <input id="cResale" type="number" min="0" max="90" step="5" value="35"></label>
+    </form>
+    <div class="result" id="calcOut" aria-live="polite"></div>
+  </div>
+  <p class="note">Остаточная стоимость — допущение: Mac обычно держат цену лучше Windows-ноутбуков, но точное значение зависит от рынка.</p>
 </section>
 
 <section class="wrap" id="sources">

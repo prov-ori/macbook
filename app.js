@@ -159,6 +159,89 @@
   }
   boxes('setupList', SETUP); boxes('riskList', RISKS); boxes('altList', ALTS);
 
+  // ---------- ещё причины ----------
+  var MORE = [
+    { t: 'Safari/WebKit только на Mac', tag: 'Сильный · для веба', p: 'Единственный способ проверять сайты и веб-приложения в настоящем Safari (в том числе мобильном через Simulator). На Windows и Linux этого нет. Если делаю фронтенд — это реальный аргумент.' },
+    { t: 'Одна машина — iOS и Android', tag: 'Сильный · для разработки', p: 'Flutter, React Native, Kotlin Multiplatform: сборка под iOS возможна только на Mac, под Android — на любой ОС. MacBook закрывает оба таргета.' },
+    { t: 'Заработок и портфолио', tag: 'Умеренный', p: 'iOS-разработчик может публиковать приложения и брать фриланс-заказы. Но есть скрытая стоимость: Apple Developer Program стоит 99 $/год.' },
+    { t: 'Logic Pro и GarageBand', tag: 'Умеренный · если звук', p: 'Раз у меня микрофон и звуковой микшер: Core Audio даёт малую задержку, а USB-аудио class-compliant подключается без драйверов. Но на Windows есть ASIO и Reaper — незаменимым Mac не будет.' },
+    { t: 'Производительность не падает от батареи', tag: 'Умеренный', p: 'Apple Silicon на батарее работает почти так же быстро, как от сети. У Windows-ноутбуков разница обычно заметнее. Это реальная польза в поездках.' },
+    { t: 'Тишина (Air)', tag: 'Умеренный', p: 'Air без вентилятора: нет шума на парах, в библиотеке и в дороге. Цена — снижение частот при долгой нагрузке.' },
+    { t: 'Срок поддержки и перепродажа', tag: 'Умеренный', p: 'Apple обычно поддерживает Mac обновлениями macOS много лет, а на вторичном рынке они держат цену лучше типичных Windows-ноутбуков. Это снижает реальную стоимость владения.' },
+    { t: 'Unix-среда как в Kali', tag: 'Умеренный', p: 'zsh, ssh, Homebrew, Docker — привычный набор для человека, который сидит в Linux. Минус: ARM, x86-контейнеры идут через эмуляцию и медленнее.' },
+    { t: 'Единая память для локальных моделей', tag: 'Нишевой', p: 'На Mac с 24+ ГБ можно запускать локальные LLM (MLX, llama.cpp). Но RTX 5080 даёт больше токенов в секунду, хотя и ограничена 16 ГБ видеопамяти. Это дополнение, не замена ПК.' },
+    { t: 'Безопасность в поездках', tag: 'Небольшой', p: 'Touch ID, Secure Enclave, FileVault, Find My и Activation Lock: потерянный или украденный ноутбук практически бесполезен вору.' },
+    { t: 'iPhone как веб-камера', tag: 'Небольшой', p: 'Continuity Camera делает из iPhone 17 хорошую камеру для созвонов без кабеля. Приятная мелочь, а не причина покупать.' },
+    { t: '«Просто хочется»', tag: 'Слабый · но честный', p: 'Дисплей, трекпад, динамики, ощущение качества. Это тоже причина, но её нужно называть прямо, а не прятать за техническими доводами.' }
+  ];
+
+  // ---------- сделки ----------
+  var DEALS = [
+    { t: 'Apple Education Store', tag: 'Первый вариант', p: 'Скидка для студентов, преподавателей и сотрудников вузов; иногда добавляют подарок в сезон back-to-school (в США — подарочная карта или наушники). Нужно подтвердить статус (UNiDAYS или документ). Скидка обычно скромная: порядка 5–10%.', v: 'Вердикт: при статусе студента проверяй обязательно.' },
+    { t: 'Apple Certified Refurbished', tag: 'Лучший баланс', p: 'Официально восстановленные устройства: новая батарея и корпус, гарантия 1 год, можно купить AppleCare. Скидка порядка 15%. Минус: ограниченный выбор конфигураций — ОЗУ не подгонишь, как при заказе с нуля.', v: 'Вердикт: сильный вариант для Air или Pro, если подойдёт готовая конфигурация.' },
+    { t: 'Распродажи и ресейлеры', tag: 'Подожди и сэкономь', p: 'Чёрная пятница — в конце ноября, до неё около трёх недель. Ресейлеры часто снижают цену на 5–15% или дают бонусы. Но на фоне подорожания памяти скидки в 2026 нестабильны, и ждать выгодно не всегда.', v: 'Вердикт: если Mac нужен не срочно — жди до конца ноября и сравнивай.' },
+    { t: 'Предыдущее поколение (Air M4)', tag: 'Компромисс', p: 'Нераспроданные остатки Air M4 у ресейлеров часто дешевле на 15–25%. Для Xcode и университета разница с M5 обычно небольшая. Проверь, что ОЗУ 16 ГБ или больше.', v: 'Вердикт: имеет смысл, если нужна экономия, а не максимум мощности.' },
+    { t: 'Б/у (Air M2/M3/M4, Pro M3/M4)', tag: 'Дёшево, но риск', p: 'Экономия до 30–45%. Проверь: серийный номер на checkcoverage.apple.com, отсутствие Activation Lock и MDM, число циклов батареи, чек, физическую встречу. Конфигурация — минимум 16 ГБ ОЗУ.', v: 'Вердикт: подходит, но только с проверкой; гарантии почти нет.' },
+    { t: 'Trade-in', tag: 'Если есть что сдать', p: 'Apple и операторы принимают старую технику в зачёт. Мой Kali-ноутбук продавать не стоит: он нужен для пентеста Wi-Fi. Планшет Yoga Tab Plus Apple не принимает — только через сторонние площадки.', v: 'Вердикт: пригодится лишь если есть лишнее устройство.' },
+    { t: 'Рассрочка и кредитка', tag: 'Осторожно', p: 'Рассрочка 0% (если есть в стране) и кэшбэк по карте могут быть выгодны. Но проценты, комиссия и штрафы часто съедают всю экономию.', v: 'Вердикт: только беспроцентная и только если плачу вовремя.' },
+    { t: 'Как инструмент для заработка', tag: 'Зависит от страны', p: 'Если я зарабатываю на разработке (фриланс, ИП, компания), покупку можно оформить как расход или основное средство. Условия и вычеты зависят от страны — уточни у бухгалтера.', v: 'Вердикт: проверить, прежде чем покупать на частное лицо.' }
+  ];
+
+  var STEPS = [
+    'Сформулировать главную задачу: какой проект в Xcode я начну в первый месяц. Нет ответа — не покупать.',
+    'Выбрать конфигурацию: Air 13" M5, 24 ГБ ОЗУ, 512 ГБ–1 ТБ. Меньше 16 ГБ не брать.',
+    'Сравнить цены: Education Store, Refurbished, ресейлеры и Air M4 из остатков.',
+    'Если срочности нет — подождать до конца ноября и сравнить предложения.',
+    'Посчитать полную стоимость в калькуляторе: с аксессуарами, AppleCare и Developer Program.',
+    'Купить с возвратом: у Apple 14 дней, у магазинов — по закону; оставить чек и проверить Mac за неделю в реальной работе (Xcode, Simulator, док-станция).'
+  ];
+
+  document.getElementById('moreReasons').innerHTML = MORE.map(function (b) {
+    return '<div class="box"><span class="tag">' + esc(b.tag) + '</span><h3>' + esc(b.t) + '</h3><p>' + esc(b.p) + '</p></div>';
+  }).join('');
+  document.getElementById('dealList').innerHTML = DEALS.map(function (b) {
+    return '<div class="box"><span class="tag">' + esc(b.tag) + '</span><h3>' + esc(b.t) + '</h3><p>' + esc(b.p) + '</p><p class="vd">' + esc(b.v) + '</p></div>';
+  }).join('');
+  document.getElementById('steps').innerHTML = STEPS.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('');
+
+  // ---------- калькулятор ----------
+  var PRICES = { neo: 599, air13: 1299, air15: 1499, pro14: 1999, pro14pro: 2499, pro16: 2999 };
+  var cModel = document.getElementById('cModel');
+  cModel.innerHTML = MODELS.map(function (m) { return '<option value="' + m.id + '"' + (m.pick ? ' selected' : '') + '>' + esc(m.name) + ' (' + PRICES[m.id] + ' $)</option>'; }).join('');
+  function num(id) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) && v >= 0 ? v : 0; }
+  function money(n) { return Math.round(n).toLocaleString('ru-RU').replace(/ /g, ' ') + ' $'; }
+  function calc() {
+    var base = PRICES[cModel.value];
+    var customRaw = document.getElementById('cCustom').value;
+    var pct = customRaw !== '' ? Math.min(num('cCustom'), 80) : parseFloat(document.getElementById('cDeal').value);
+    var disc = base * pct / 100;
+    var up = num('cUp'), care = num('cCare'), acc = num('cAcc');
+    var dev = parseInt(document.getElementById('cDev').value, 10) * 99;
+    var years = Math.max(1, Math.min(10, Math.round(num('cYears')) || 1));
+    var resale = Math.min(num('cResale'), 90);
+    var machine = base - disc + up;
+    var total = machine + care + acc + dev;
+    var back = machine * resale / 100;
+    var net = total - back;
+    document.getElementById('calcOut').innerHTML =
+      '<div class="sub">Итого сейчас</div><div class="big">' + money(total) + '</div>' +
+      '<table><tbody>' +
+      '<tr><td>Модель</td><td>' + money(base) + '</td></tr>' +
+      '<tr><td>Скидка (' + pct + '%)</td><td>−' + money(disc) + '</td></tr>' +
+      '<tr><td>Апгрейд ОЗУ/SSD</td><td>' + money(up) + '</td></tr>' +
+      '<tr><td>AppleCare</td><td>' + money(care) + '</td></tr>' +
+      '<tr><td>Аксессуары</td><td>' + money(acc) + '</td></tr>' +
+      '<tr><td>Developer Program</td><td>' + money(dev) + '</td></tr>' +
+      '<tr class="total"><td>Всего</td><td>' + money(total) + '</td></tr>' +
+      '<tr><td>Возврат при продаже (' + resale + '%)</td><td>−' + money(back) + '</td></tr>' +
+      '<tr class="total"><td>Реальная стоимость за ' + years + ' г.</td><td>' + money(net) + '</td></tr>' +
+      '<tr><td>В месяц</td><td>' + money(net / (years * 12)) + '</td></tr>' +
+      '</tbody></table>';
+  }
+  document.getElementById('calcForm').addEventListener('input', calc);
+  document.getElementById('calcForm').addEventListener('change', calc);
+  calc();
+
   // тема
   var root = document.documentElement;
   try { var s = localStorage.getItem('theme'); if (s) root.dataset.theme = s; } catch (e) {}

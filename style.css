@@ -93,11 +93,25 @@ td.rec,th.rec{box-shadow:inset 2px 0 0 var(--accent),inset -2px 0 0 var(--accent
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);justify-content:center}
 .legend i{display:inline-block;width:24px;border-top:3px solid var(--muted);vertical-align:middle;margin-right:4px}
 .legend i.m{border-top-width:2px}.legend i.w{border-top:2px dashed var(--muted)}
+.steps{padding-left:22px}
+.steps li{margin:8px 0}
+.calc{display:grid;gap:16px;grid-template-columns:1.2fr 1fr}
+.calcform{display:grid;gap:12px;grid-template-columns:1fr 1fr;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.calcform label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+.calcform select,.calcform input{font:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:100%}
+.result{background:var(--surface);border:1px solid var(--accent);border-radius:14px;padding:20px;align-self:start}
+.result .big{font-size:36px;font-weight:800;letter-spacing:-.02em}
+.result table{min-width:0;width:100%;margin-top:12px}
+.result td{padding:6px 0;border-bottom:1px solid var(--line)}
+.result td:last-child{text-align:right;white-space:nowrap}
+.result .total td{font-weight:700;border-bottom:0}
+.box .vd{font-size:13px;font-weight:700;margin-top:8px}
 .src{padding-left:18px}
 .foot{padding:32px 16px 48px;color:var(--muted);font-size:14px}
 @media (max-width:760px){
   .verdict{grid-template-columns:1fr}
   .reason{grid-template-columns:1fr;gap:8px}
+  .calc,.calcform{grid-template-columns:1fr}
   nav{display:none}
   .bar{justify-content:space-between}
   h2{font-size:24px}
