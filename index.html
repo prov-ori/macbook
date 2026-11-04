@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Какой MacBook купить — разбор под мой стек</title>
+<meta name="description" content="Сравнение актуальных MacBook (Neo, Air M5, Pro M5/M5 Pro/Max) и честная проверка причин покупки: университет, iOS-разработка, поездки, текущая техника.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a href="#top" class="brand">MacBook<span>?</span></a>
+    <nav>
+      <a href="#verdict">Вердикт</a>
+      <a href="#models">Модели</a>
+      <a href="#compare">Таблица</a>
+      <a href="#reasons">Причины</a>
+      <a href="#setup">Моя техника</a>
+      <a href="#risks">Минусы</a>
+    </nav>
+    <button id="theme" aria-label="Сменить тему" title="Сменить тему">◐</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero wrap">
+  <p class="eyebrow">Ноябрь 2026 · личный разбор</p>
+  <h1>Нужен ли мне MacBook — и какой именно</h1>
+  <p class="lead">Сравнение актуальной линейки и проверка моих аргументов «за» на прочность. Без рекламы: где Mac реально нужен, а где я себя уговариваю.</p>
+  <div class="chips">
+    <span>iOS-разработка</span><span>Университет</span><span>Поездки</span><span>iPhone 17</span>
+  </div>
+</section>
+
+<section id="verdict" class="wrap">
+  <h2>Короткий вердикт</h2>
+  <div class="verdict">
+    <div class="vcard main">
+      <h3>Брать: MacBook Air 13" M5, 24 ГБ ОЗУ, 512 ГБ–1 ТБ</h3>
+      <p>Покрывает Xcode, университет и поездки. Лёгкий (~1,24 кг), ~18 ч автономности. Pro избыточен, пока я не делаю тяжёлый ML или видео.</p>
+      <ul>
+        <li><b>Не брать Neo</b> — 8 ГБ ОЗУ и 256 ГБ для Xcode + Simulator тесны: упрёшься в память быстро.</li>
+        <li><b>Не брать 16 ГБ</b> — разница в цене небольшая, а ОЗУ потом не добавить.</li>
+        <li><b>Pro 14" M5</b> — если нужны вентилятор (долгие сборки), яркий mini-LED 120 Гц и больше портов.</li>
+      </ul>
+    </div>
+    <div class="vcard">
+      <h3>Главная честная мысль</h3>
+      <p>Из моих четырёх причин <b>одна жёсткая</b> (iOS: Xcode есть только на macOS), две мягкие (универ, поездки) и одна <b>почти фиктивная</b> — «удобно с остальной техникой». Windows-ПК и Android-планшет с Mac почти не интегрируются. Покупка оправдана, но по причине №1, а не по сумме красивых.</p>
+    </div>
+  </div>
+  <p class="note">Выбор — рекомендация по моим вводным (разработка + универ + поездки). Если бюджет жёсткий, смотри раздел «Альтернативы» ниже.</p>
+</section>
+
+<section id="models" class="wrap">
+  <h2>Актуальная линейка</h2>
+  <p class="sub">Цены — ориентир в USD (США). В июне 2026 Apple подняла цены, источники расходятся — проверяй на apple.com.</p>
+  <div class="filter" id="filter">
+    <button data-f="all" class="on">Все</button>
+    <button data-f="budget">Бюджет</button>
+    <button data-f="air">Air</button>
+    <button data-f="pro">Pro</button>
+  </div>
+  <div class="cards" id="cards"></div>
+</section>
+
+<section id="compare" class="wrap">
+  <h2>Сравнительная таблица</h2>
+  <p class="sub">Наведи на столбец, чтобы подсветить. Рекомендованная модель выделена.</p>
+  <div class="tablewrap"><table id="table"></table></div>
+</section>
+
+<section id="reasons" class="wrap">
+  <h2>Мои причины: проверка на прочность</h2>
+  <div class="reasons" id="reasonList"></div>
+</section>
+
+<section id="setup" class="wrap">
+  <h2>Как MacBook впишется в мою технику</h2>
+  <div class="diagram" aria-label="Схема совместимости устройств с MacBook">
+    <svg viewBox="0 0 720 360" role="img" aria-labelledby="dtitle">
+      <title id="dtitle">Схема: MacBook в центре, связи с iPhone, Windows-ПК, Android-планшетом и Kali-ноутбуком</title>
+      <g class="lines">
+        <line x1="360" y1="180" x2="110" y2="70" class="l-strong"/>
+        <line x1="360" y1="180" x2="610" y2="70" class="l-mid"/>
+        <line x1="360" y1="180" x2="110" y2="290" class="l-weak"/>
+        <line x1="360" y1="180" x2="610" y2="290" class="l-mid"/>
+      </g>
+      <g class="node center"><rect x="285" y="150" width="150" height="60" rx="14"/><text x="360" y="186" text-anchor="middle">MacBook</text></g>
+      <g class="node"><rect x="25" y="40" width="170" height="60" rx="12"/><text x="110" y="66" text-anchor="middle">iPhone 17</text><text x="110" y="86" text-anchor="middle" class="sm">глубокая интеграция</text></g>
+      <g class="node"><rect x="525" y="40" width="170" height="60" rx="12"/><text x="610" y="66" text-anchor="middle">Windows-ПК</text><text x="610" y="86" text-anchor="middle" class="sm">удалённый доступ к GPU</text></g>
+      <g class="node"><rect x="25" y="260" width="170" height="60" rx="12"/><text x="110" y="286" text-anchor="middle">Yoga Tab Plus</text><text x="110" y="306" text-anchor="middle" class="sm">почти нет интеграции</text></g>
+      <g class="node"><rect x="525" y="260" width="170" height="60" rx="12"/><text x="610" y="286" text-anchor="middle">Kali-ноутбук</text><text x="610" y="306" text-anchor="middle" class="sm">VM на Mac, Wi-Fi отдельно</text></g>
+    </svg>
+    <div class="legend"><i class="s"></i>сильная связь <i class="m"></i>рабочая <i class="w"></i>слабая</div>
+  </div>
+  <div class="grid2" id="setupList"></div>
+</section>
+
+<section id="risks" class="wrap">
+  <h2>Минусы и когда не покупать</h2>
+  <div class="grid2" id="riskList"></div>
+  <h3 class="alt">Альтернативы для iOS-разработки</h3>
+  <div class="grid2" id="altList"></div>
+</section>
+
+<section class="wrap" id="sources">
+  <h2>Источники</h2>
+  <ul class="src">
+    <li><a href="https://www.macworld.com/article/667144/best-macbook-air-vs-pro-neo-compared.html" rel="noopener">Macworld — Air vs Pro vs Neo</a></li>
+    <li><a href="https://www.tomsguide.com/computing/macbooks/macbook-neo-vs-macbook-air-m5-vs-macbook-pro-m5-which-one-is-best-for-you" rel="noopener">Tom's Guide — Neo vs Air M5 vs Pro M5</a></li>
+    <li><a href="https://www.tomsguide.com/computing/macbooks/macbook-neo-is-official-for-usd599-specs-colors-and-latest-news" rel="noopener">Tom's Guide — MacBook Neo</a></li>
+    <li><a href="https://www.tomsguide.com/computing/macbooks/apple-just-quietly-hiked-the-price-on-the-new-macbook-airs-and-macbook-pros-what-youll-pay-now" rel="noopener">Tom's Guide — повышение цен</a></li>
+    <li><a href="https://www.igeeksblog.com/m5-macbook-pro-release-date-specs-price/" rel="noopener">iGeeksBlog — M5 Pro / M5 Max</a></li>
+  </ul>
+  <p class="note">Часть характеристик (RAM базовых Pro, поддержка числа внешних дисплеев) помечена как «проверить» — сверяй с Tech Specs на apple.com перед покупкой.</p>
+</section>
+</main>
+
+<footer class="wrap foot">Сделано для личного выбора · данные на ноябрь 2026</footer>
+<script src="app.js"></script>
+</body>
+</html>
